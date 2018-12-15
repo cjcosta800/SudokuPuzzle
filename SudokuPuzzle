@@ -1,0 +1,62 @@
+public class SudokuPuzzle
+{
+
+    public static int[][] sudoku = new int[9][9];
+    public static int[][] sudoku2 = new int[9][9];
+    public static boolean[][] filtro = new boolean[9][9];
+
+    public static boolean valid(int[][] grid, boolean[][] filter)
+    {	
+	if (filter.length > 9 || filter[0].length > 9 || !Sudoku2.quadriculaValida(grid))
+	    return false;		
+
+	return true;
+    }
+
+    public SudokuPuzzle(int[][] grid, boolean[][] filter)
+    {
+	
+	if (valid(grid, filter))
+	{
+	    filtro = filter;
+	    sudoku2 = grid;
+	    for (int l = 0; l < grid.length; l++)
+	    {
+		for (int c = 0; c < grid[0].length; c++)
+		{
+		    if (filter[l][c])
+		    {
+			sudoku[l][c] = grid[l][c];
+		    }
+		}
+	    }
+	}
+    }
+
+    public int cellValue(int l, int c)
+    {
+	return sudoku2[l][c];
+
+    }
+
+    public boolean revealed(int l, int c)
+    {
+	return filtro[l][c];
+    }
+    public String toString() {
+	
+	StringBuilder sb = new StringBuilder();
+	for(int i = 0; i < 9; i++){
+		if(i % 3 == 0)
+		    sb.append("-------------------------\n");
+		for(int j = 0; j < 9; j++){
+			if(j % 3 == 0)
+			    sb.append("| ");
+			sb.append(sudoku[i][j] + " ");
+		}
+		sb.append("|\n");
+	}
+	sb.append("-------------------------\n");
+	return sb.toString();
+    }
+}
